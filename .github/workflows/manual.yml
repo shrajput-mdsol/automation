@@ -18,14 +18,19 @@ jobs:
           valueFile: 'src/main/resources/application.yml'
           propertyPath: 'spring.application.componentVersion'
           value: ${{ github.event.inputs.version_number }}
-          commitChange: false
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v4
-        with:
-          commit-message: updating application version to ${{ github.event.inputs.version_number }}
-          title: Application Version Update
-          body: This PR aims at updating the application version to the next release version.
-          branch: update_version_${{ github.event.inputs.version_number }}
-          base: develop
+          branch: update_version
+          targetBranch: develop
+          createPR: true
+          message: 'updating version number'
+          title: 'Application Version Update'
+          description: 'This PR aims at updating the application version to the next release version'
+#      - name: Create Pull Request
+#        uses: peter-evans/create-pull-request@v4
+#        with:
+#          commit-message: updating application version to ${{ github.event.inputs.version_number }}
+#          title: Application Version Update
+#          body: This PR aims at updating the application version to the next release version.
+#          branch: update_version_${{ github.event.inputs.version_number }}
+#          base: develop
       - name: Cat Updated application.yaml
         run: cat src/main/resources/application.yml
