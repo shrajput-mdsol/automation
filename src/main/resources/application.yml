@@ -1,1 +1,4 @@
-
+spring:
+  application:
+    name: Acron Intelligent Trials API Service
+    componentVersion: 2022.4.0
