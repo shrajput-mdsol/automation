@@ -1,34 +1,34 @@
-name: YAML Update Action
+name: Component Version Update Action
 on:
   workflow_dispatch:
     inputs:
       version_number:
         description: 'next release version number'
+        #do we need to provide some default value?
         default: '?'
         required: true
 jobs:
-  test-update-file:
+  update-application-yml-file:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Cat Original application.yaml
+      - name: cat original application.yaml
         run: cat src/main/resources/application.yml
-      - name: Update application.yml
+      - name: update application.yml
         uses: fjogeleit/yaml-update-action@main
         with:
           valueFile: 'src/main/resources/application.yml'
           propertyPath: 'spring.application.componentVersion'
           value: ${{ github.event.inputs.version_number }}
-          token: ${{ secrets.GH_TOKEN }}
           commitChange: false
           targetBranch: develop
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-          commit-message: update version
-          title: Update Version
-          body: Update changelog to reflect release changes
-          branch: update_version/${{ github.event.inputs.version_number }}
+          commit-message: updating component version to ${{ github.event.inputs.version_number }}
+          title: Component Version Update
+          body: This PR aims at updating the component version to the next release version.
+          branch: update_version_${{ github.event.inputs.version_number }}
           base: develop
       - name: Cat Updated application.yaml
         run: cat src/main/resources/application.yml
