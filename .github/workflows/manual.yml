@@ -18,7 +18,7 @@ jobs:
         with:
           valueFile: 'src/main/resources/application.yml'
           propertyPath: 'spring.application.componentVersion'
-          value: ${{ github.event.inputs.name }}
+          value: ${{ github.event.inputs.version_number }}
           masterBranchName: develop
           branch: update_version
           targetBranch: develop
