@@ -24,6 +24,7 @@ jobs:
           message: 'updating version number'
           title: 'Application Version Update'
           description: 'This PR aims at updating the application version to the next release version'
+          commitChange: false
 #      - name: Create Pull Request
 #        uses: peter-evans/create-pull-request@v4
 #        with:
