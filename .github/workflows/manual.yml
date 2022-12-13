@@ -1,4 +1,4 @@
-name: Component Version Update Action
+name: Application Version Update Action
 on:
   workflow_dispatch:
     inputs:
@@ -25,9 +25,9 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
         with:
-          commit-message: updating component version to ${{ github.event.inputs.version_number }}
-          title: Component Version Update
-          body: This PR aims at updating the component version to the next release version.
+          commit-message: updating application version to ${{ github.event.inputs.version_number }}
+          title: Application Version Update
+          body: This PR aims at updating the application version to the next release version.
           branch: update_version_${{ github.event.inputs.version_number }}
           base: develop
       - name: Cat Updated application.yaml
