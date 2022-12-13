@@ -14,7 +14,7 @@ jobs:
       - name: Cat Original application.yaml
         run: cat src/main/resources/application.yml
       - name: Update application.yml
-#        uses: fjogeleit/yaml-update-action@main
+        uses: fjogeleit/yaml-update-action@main
         with:
           valueFile: 'src/main/resources/application.yml'
           propertyPath: 'spring.application.componentVersion'
