@@ -11,17 +11,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: ./
+      - name: Cat Original application.yaml
+        run: cat src/main/resources/application.yml
       - name: Update application.yml
-        uses: fjogeleit/yaml-update-action@main
+        uses: ./
+#        uses: fjogeleit/yaml-update-action@main
         with:
           valueFile: 'src/main/resources/application.yml'
           propertyPath: 'spring.application.componentVersion'
-          masterBranchName: develop
           value: ${{ github.event.inputs.name }}
+          masterBranchName: develop
           branch: update_version
           targetBranch: develop
-          commitChange: true
-          createPR: true
+          commitChange: false
+          updateFile: 'true'
+#          createPR: true
           message: 'Update Image Version to v1.0.1'
           token: ${{ secrets.GH_TOKEN }}
+      - name: Cat Updated application.yaml
+        run: cat src/main/resources/application.yml
