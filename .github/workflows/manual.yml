@@ -20,12 +20,12 @@ jobs:
           propertyPath: 'spring.application.componentVersion'
           value: ${{ github.event.inputs.version_number }}
           masterBranchName: develop
-          branch: update_version/${{ github.event.inputs.version_number }}
+          branch: update_version
           targetBranch: develop
-          commitChange: true
-#          updateFile: 'true'
-          createPR: true
-          message: 'updated version number'
+          commitChange: false
+          updateFile: 'true'
+#          createPR: true
+          message: 'Update Image Version to v1.0.1'
           token: ${{ secrets.GH_TOKEN }}
       - name: Cat Updated application.yaml
         run: cat src/main/resources/application.yml
