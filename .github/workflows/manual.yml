@@ -21,13 +21,13 @@ jobs:
           value: ${{ github.event.inputs.version_number }}
           token: ${{ secrets.GH_TOKEN }}
       - name: Create Pull Request
-          uses: peter-evans/create-pull-request@v4
-          with:
-            commit-message: update version
-            title: Update Version
-            body: Update changelog to reflect release changes
-            branch: update_version/ ${{ github.event.inputs.version_number }}
-            base: develop
-            token: ${{ secrets.GH_TOKEN }}
+        uses: peter-evans/create-pull-request@v4
+        with:
+          commit-message: update version
+          title: Update Version
+          body: Update changelog to reflect release changes
+          branch: update_version/ ${{ github.event.inputs.version_number }}
+          base: develop
+          token: ${{ secrets.GH_TOKEN }}
       - name: Cat Updated application.yaml
         run: cat src/main/resources/application.yml
