@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Update application.yml
+      - name: Update src/main/resources/application.yml
         uses: fjogeleit/yaml-update-action@main
         with:
           valueFile: 'application.yml'
