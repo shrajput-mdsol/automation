@@ -23,7 +23,7 @@ jobs:
           branch: update_version/${{ github.event.inputs.version_number }}
           targetBranch: develop
           commitChange: true
-          updateFile: 'true'
+          updateFile: true
           createPR: true
           message: 'updated version number'
           token: ${{ secrets.GH_TOKEN }}
