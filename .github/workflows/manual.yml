@@ -20,7 +20,6 @@ jobs:
           valueFile: 'src/main/resources/application.yml'
           propertyPath: 'spring.application.componentVersion'
           value: ${{ github.event.inputs.version_number }}
-          commitChange: false
           targetBranch: develop
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v4
