@@ -1,4 +1,4 @@
 spring:
   application:
     name: Acron Intelligent Trials API Service
-    componentVersion: "2023.4.0-dev"
+    componentVersion: "2023.15.0-dev"
