@@ -1,4 +1,73 @@
+server:
+  port: 8080
+aws:
+  region: ${AWS_REGION:us-east-1}
+app:
+  auth:
+    mAuthBaseUrl: ${MAUTH_BASE_URL:}
+    mAuthRequestUrl: ${MAUTH_REQUEST_URL:/mauth/v1}
+    mAuthTokenUrl: ${MAUTH_TOKEN_URL:/security_tokens/%s.json}
+    mAuthPrivateKey: ${MAUTH_KEY:}
+    mAuthApiId: ${MAUTH_APP_ID:}
+  cache:
+    ttlNearestMinute: ${CACHE_TTL_NEAREST_MINUTE:60}
+  settings:
+    internalClientsAppIds: ${INTERNAL_CLIENTS_APP_IDS:}
+    itAdminBaseEndpoint: ${IT_ADMIN_BASE_ENDPOINT:}
+    defaultRequestPageSize: ${DEFAULT_REQUEST_PAGE_SIZE:500}
+
 spring:
   application:
     name: Acron Intelligent Trials API Service
-    componentVersion: "2023.1.0-dev"
+    componentVersion: 2022.4.0
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+    deserialization:
+      fail-on-unknown-properties: true
+      accept-empty-string-as-null-object: false
+  redis:
+    database: 0
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    jedis:
+      pool:
+        max-wait: -1
+        max-active: -1
+        max-idle: -1
+        min-idle: 16
+        enabled: true
+  datasource:
+    it-data:
+      url: ${IT_DATA_POSTGRES_DBNAME:}
+      username: ${IT_DATA_POSTGRES_DBUSER:}
+      password: ${IT_DATA_POSTGRES_DBPASSWORD:}
+      driver-class-name: ${IT_DATA_DRIVER_CLASS:org.postgresql.Driver}
+      hikari:
+        connectionTimeout: 600000
+        idleTimeout: 60000
+        maxLifetime: 1800000
+        schema: ${IT_DATA_POSTGRES_SCHEMA:it_oper}
+        maximumPoolSize: ${IT_DATA_MAX_THREAD_POOL_SIZE:50}
+        minimumIdle: 20
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    url: /openapi.yaml
+    operationsSorter: method
+    persistAuthorization: true
+  api-docs:
+    enabled: false
+    path: /openapi
+  cache:
+    disabled: true
+
+logging:
+  config: ${LOG_CONFIGURATION_LOC:classpath:log4j2.xml}
+
+
+
