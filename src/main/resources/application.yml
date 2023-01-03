@@ -18,7 +18,7 @@ app:
 spring:
   application:
     name: Acron Intelligent Trials API Service
-    componentVersion: "2023.6.0-dev"
+    componentVersion: "2022.4.0"
   data:
     web:
       pageable:
